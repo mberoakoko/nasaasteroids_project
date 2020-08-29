@@ -38,8 +38,7 @@ class Asteroid{
     move(){
         this.deltaT += 0.01
        // console.log(this.xComponent(), " : ", this.yComponent())
-        let newPos = this.sketch.createVector(this.xComponent(), this.yComponent())
-        this.position = newPos
+        this.position =  this.sketch.createVector(this.xComponent(), this.yComponent())
 
     }
     render(){

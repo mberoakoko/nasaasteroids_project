@@ -100,7 +100,8 @@ class DataHandler{
         const response1 = await this.requestData();
         const parsed = await this.parseData(response1)
         return {
-            word : parsed.links
+            word : parsed.links,
+            orbitalData: parsed.orbital_data
         }
     }
     parseData(data ){
@@ -112,6 +113,7 @@ class DataHandler{
         this.links = _links
         return {
             links: this.links,
+            orbital_data: this.orbit_data
         }
     }
     setData(data){
@@ -119,36 +121,4 @@ class DataHandler{
     }
 
 }
-let word ;
-function what(data){
-    word = data
-    console.log(word)
-}
-const request = new DataHandler();
-
-const tryout = request.init();
-const setData = (data) =>{
-    word = data
-    console.log(data)
-}
-(
-    async ()=>{
-        let abc = await request.init()
-        console.log(abc)
-    }
-)()
-setTimeout(setData, 1500)
-class Example {
-    constructor() {
-        this.data = "Hello"
-    }
-    init(){
-        this.data = "world"
-    }
-}
-
-/*const example = new Example();
-console.log(example.data)
-example.init()
-console.log(example.data)*/
-//export default DataHandler
+export default DataHandler

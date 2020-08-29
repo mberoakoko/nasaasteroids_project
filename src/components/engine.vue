@@ -8,24 +8,31 @@
 <script>
 import P5 from 'p5'
 import s from "../engine/Sketch"
-//import DataHandler from "@/engine/DataFetch";
-//const inStream = new DataHandler();
+import DataHandler from "@/engine/DataFetch";
+const inStream = new DataHandler();
+
 export default {
 name: "engine",
+    /**
+     * @param {{orbital_data}}data
+     */
     mounted() {
-     /*  inStream.sendRequest().then(result =>{
-            this.orbit_data = result.data
-           console.log(this.orbit_data)
-           const  {links: _links}  = this.orbit_data
-           const {near_earth_objects : _near_earth_objects } = this.orbit_data
-           console.log(" This is links ", _links)
-           console.log("Near earth Objects => ", _near_earth_objects)
-        })*/
+        inStream.init().then(result => {
+            this.orbit_data= JSON.stringify(result);
+            sessionStorage.setItem("orbitalData" ,  this.orbit_data)
+        })
 
     },
     created() {
+
         // eslint-disable-next-line no-unused-vars
-       let canvas = new P5(s, 'canvas');
+
+        const p5Init = ()=>{
+            // eslint-disable-next-line no-unused-vars
+            let canvas = new P5(s, 'canvas');
+        }
+        setTimeout(p5Init, 500)
+
     },
     data(){
     return{
